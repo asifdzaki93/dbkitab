@@ -11,9 +11,13 @@ const options = {
     },
     servers: [
       {
-        url: 'https://ebook.sarungtambalan.my.id',
-        description: 'Production Server (Cloudflare Tunnel)',
+        url: 'https://dbkitab.vercel.app',
+        description: 'Production Server (Vercel)',
       },
+      {
+        url: 'http://localhost:8081',
+        description: 'Local Development Server',
+      }
     ],
     components: {
       securitySchemes: {
