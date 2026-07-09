@@ -33,10 +33,14 @@ const swaggerSpec = swaggerJSDoc(options);
 
 function setupSwagger(app) {
   const CSS_URL = "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui.min.css";
+  const customJs = [
+    "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui-bundle.js",
+    "https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.1.0/swagger-ui-standalone-preset.js"
+  ];
   app.use(
     '/api-docs',
     swaggerUi.serve,
-    swaggerUi.setup(swaggerSpec, { customCssUrl: CSS_URL })
+    swaggerUi.setup(swaggerSpec, { customCssUrl: CSS_URL, customJs: customJs })
   );
   console.log('Swagger UI available at /api-docs');
 }
