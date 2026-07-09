@@ -29,8 +29,12 @@ const port = process.env.PORT || 8081;
 app.use(cors());
 app.use(express.json());
 
-// Serve static files (covers, uploads)
-app.use('/public', express.static('public'));
+// Redirect all static file requests to Cloudflare R2
+app.use('/public', (req, res) => {
+    const s3PublicUrl = process.env.S3_PUBLIC_URL || 'https://dbkitab.sarungtambalan.my.id';
+    // req.path already starts with '/', so we append it to '/public'
+    res.redirect(301, `${s3PublicUrl}/public${req.path}`);
+});
 
 // Setup Swagger UI
 setupSwagger(app);
